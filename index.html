@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台灣有機農業市場現況與發展趨勢分析 — 研究成果展示</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Design Tokens ─── */
+    :root {
+      --ink:        #1a2a1a;
+      --moss:       #3a5c3a;
+      --sage:       #6a9e6a;
+      --sage-light: #d4e9d4;
+      --parchment:  #f7f5f0;
+      --cream:      #ffffff;
+      --gold:       #c09b4e;
+      --muted:      #6b7b6b;
+      --border:     #dde8dd;
+      --radius:     8px;
+      --max-w:      860px;
+      --section-gap: 5rem;
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 400;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--moss); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── Typography ─── */
+    h1, h2, h3 { font-family: 'Noto Serif TC', serif; line-height: 1.4; }
+    h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--moss); margin-bottom: 1.5rem; }
+    h3 { font-size: 1.1rem; font-weight: 600; color: var(--ink); margin-bottom: .5rem; }
+    p { margin-bottom: 1rem; color: #3a4a3a; }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav ul {
+      display: flex; gap: 0; list-style: none;
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 1rem; overflow-x: auto;
+    }
+    nav ul li a {
+      display: block; padding: .75rem 1.1rem;
+      font-size: .83rem; font-weight: 500; letter-spacing: .03em;
+      color: var(--muted); white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--moss); border-bottom-color: var(--moss);
+      text-decoration: none;
+    }
+
+    /* ─── Hero ─── */
+    #hero {
+      background: var(--moss);
+      background-image: linear-gradient(135deg, #2a4a2a 0%, #3a5c3a 50%, #4a7a4a 100%);
+      color: #fff; padding: 5rem 1.5rem 4rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+      background: rgba(255,255,255,.15); border-radius: 20px;
+      padding: .3rem 1rem; margin-bottom: 1.5rem; color: #c8e6c8;
+    }
+    #hero h1 {
+      font-size: clamp(1.5rem, 4vw, 2.6rem);
+      font-weight: 700; line-height: 1.35;
+      max-width: 720px; margin: 0 auto 1rem;
+      color: #fff;
+    }
+    .hero-subtitle {
+      font-size: 1rem; color: #b8d4b8; max-width: 600px; margin: 0 auto 1.8rem;
+    }
+    .hero-meta {
+      display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+      font-size: .82rem; color: #9ec49e;
+    }
+    .hero-meta span::before { content: '⊹ '; }
+
+    /* ─── Section Layout ─── */
+    section { padding: var(--section-gap) 1.5rem; }
+    section:nth-child(even) { background: var(--parchment); }
+    .container { max-width: var(--max-w); margin: 0 auto; }
+    .section-label {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: .5rem;
+    }
+
+    /* ─── Abstract ─── */
+    .abstract-box {
+      border-left: 3px solid var(--moss);
+      padding: 1.2rem 1.5rem;
+      background: var(--sage-light);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: .95rem; color: #2a3a2a;
+    }
+    .keywords {
+      margin-top: 1rem;
+      font-size: .82rem; color: var(--muted);
+    }
+    .keywords span {
+      display: inline-block; background: #fff;
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: .15rem .7rem; margin: .2rem .2rem 0 0;
+    }
+
+    /* ─── Team ─── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.8rem; margin-top: 1rem;
+    }
+    .member-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .member-card:hover { box-shadow: 0 6px 24px rgba(58,92,58,.12); transform: translateY(-2px); }
+    .member-photo {
+      width: 100%; aspect-ratio: 1;
+      background: var(--sage-light);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .member-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .member-photo .avatar-placeholder {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--sage); display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: #fff; font-family: 'Noto Serif TC', serif;
+    }
+    .member-info { padding: 1.2rem; }
+    .member-name { font-size: 1.05rem; font-weight: 700; font-family: 'Noto Serif TC', serif; margin-bottom: .2rem; }
+    .member-role { font-size: .78rem; color: var(--gold); font-weight: 500; letter-spacing: .05em; margin-bottom: .8rem; }
+    .member-bio { font-size: .85rem; color: #4a5a4a; line-height: 1.75; }
+
+    /* ─── Embed Blocks ─── */
+    .embed-block {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .embed-frame { width: 100%; height: 520px; border: none; display: block; background: #f8f8f8; }
+    .embed-footer {
+      padding: .9rem 1.2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--border);
+      font-size: .83rem; color: var(--muted);
+    }
+
+    /* ─── Button ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      background: var(--moss); color: #fff;
+      padding: .55rem 1.2rem; border-radius: 6px;
+      font-size: .83rem; font-weight: 500; letter-spacing: .03em;
+      transition: background .2s;
+      text-decoration: none;
+    }
+    .btn:hover { background: #2a4a2a; text-decoration: none; }
+    .btn-outline {
+      background: transparent; color: var(--moss);
+      border: 1.5px solid var(--moss);
+    }
+    .btn-outline:hover { background: var(--sage-light); }
+    .btn svg { flex-shrink: 0; }
+
+    /* ─── Audio Player ─── */
+    .audio-wrap {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .audio-wrap h3 { margin-bottom: .5rem; }
+    .audio-wrap p { font-size: .88rem; color: var(--muted); }
+    audio { width: 100%; margin-top: .8rem; }
+    .transcript-notice {
+      margin-top: 1rem; padding: .8rem 1rem;
+      background: var(--sage-light); border-radius: 6px;
+      font-size: .85rem; color: #2a4a2a;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+
+    /* ─── Video ─── */
+    .video-wrap {
+      background: #000; border-radius: var(--radius); overflow: hidden;
+      margin-bottom: 1.5rem; position: relative; aspect-ratio: 16/9;
+    }
+    .video-wrap video { width: 100%; height: 100%; display: block; }
+
+    /* ─── Findings ─── */
+    .findings-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem; }
+    .finding-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+    }
+    .finding-num {
+      flex-shrink: 0; width: 36px; height: 36px;
+      background: var(--moss); color: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: .9rem;
+    }
+    .finding-text strong { display: block; font-size: .97rem; margin-bottom: .3rem; }
+    .finding-text p { font-size: .88rem; color: var(--muted); margin: 0; }
+
+    /* ─── Stats Strip ─── */
+    .stats-strip {
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+      background: var(--moss); border-radius: var(--radius);
+      padding: 1.5rem 2rem; margin: 2rem 0;
+    }
+    .stat { flex: 1; min-width: 140px; color: #fff; }
+    .stat-num { font-size: 2rem; font-weight: 700; font-family: 'Noto Serif TC', serif; line-height: 1; }
+    .stat-label { font-size: .78rem; color: #b8d4b8; margin-top: .3rem; }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--ink); color: #8a9a8a;
+      text-align: center; padding: 2.5rem 1.5rem;
+      font-size: .82rem; line-height: 2;
+    }
+    footer strong { color: #c8d8c8; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .embed-frame { height: 340px; }
+      .stats-strip { gap: 1rem; }
+    }
+
+    /* ─── Scroll reveal ─── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─── -->
+<nav>
+  <ul>
+    <li><a href="#hero">首頁</a></li>
+    <li><a href="#abstract">摘要</a></li>
+    <li><a href="#team">團隊</a></li>
+    <li><a href="#report">研究報告</a></li>
+    <li><a href="#slides">簡報</a></li>
+    <li><a href="#podcast">Podcast</a></li>
+    <li><a href="#video">影片</a></li>
+    <li><a href="#findings">研究發現</a></li>
+  </ul>
+</nav>
+
+<!-- ─── Hero ─── -->
+<section id="hero">
+  <div class="container">
+    <p class="hero-eyebrow">期末研究成果展示 · 2026</p>
+    <h1>台灣有機農業市場現況與發展趨勢分析<br>——探討在地有機小農運用社群媒體進行「故事行銷」之策略與成效</h1>
+    <p class="hero-subtitle">本研究探討台灣在地有機小農如何透過社群媒體與數位平台運用「故事行銷」策略，建立品牌競爭力，並分析其對消費者行為與滿意度的影響。</p>
+    <div class="hero-meta">
+      <span>國立屏東科技大學 農企業管理系</span>
+      <span>人工智慧基礎概念及商管應用</span>
+      <span>完成日期：2026年6月</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Abstract ─── -->
+<section id="abstract">
+  <div class="container reveal">
+    <p class="section-label">Abstract / 摘要</p>
+    <h2>專題介紹</h2>
+    <div class="abstract-box">
+      <p>本研究旨在探討台灣在地有機小農在競爭日益激烈的市場環境中，如何透過社群媒體與數位平台運用「故事行銷」策略建立品牌競爭力。研究結合了量化問卷調查與質性文本分析，分析發現台灣茶產業總產值雖高達 <strong>1,500 億元</strong>，但進口茶占比超過 50%，迫使小農轉向高品質、高價值的競爭路徑。</p>
+      <p>研究結果顯示，「產品特色」與「遊客滿意度」呈現極高度正相關（<strong>r = 0.810</strong>），而故事行銷的成功關鍵在於建構「真實性」，包括披露創辦人背景、生產艱辛及利他動機等 10 大元素。透過將農產品轉化為「文化象徵」，小農能有效建立消費者的情感連結，縮短生產端與通路端的資訊距離。</p>
+      <div class="keywords">
+        <strong>關鍵字：</strong>
+        <span>有機農業</span><span>故事行銷</span><span>真實性</span>
+        <span>社群媒體</span><span>在地小農</span><span>體驗經濟</span>
+      </div>
+    </div>
+
+    <div class="stats-strip" style="margin-top:2rem;">
+      <div class="stat"><div class="stat-num">1,500億</div><div class="stat-label">台灣茶產業總產值</div></div>
+      <div class="stat"><div class="stat-num">>50%</div><div class="stat-label">進口茶市場占比</div></div>
+      <div class="stat"><div class="stat-num">r=0.810</div><div class="stat-label">產品特色 ↔ 顧客滿意度</div></div>
+      <div class="stat"><div class="stat-num">90份</div><div class="stat-label">有效問卷樣本</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Team ─── -->
+<section id="team">
+  <div class="container reveal">
+    <p class="section-label">Team / 團隊成員</p>
+    <h2>研究團隊介紹</h2>
+    <div class="team-grid">
+
+      <!-- 成員 1 -->
+      <div class="member-card">
+        <div class="member-photo">
+          <!-- 將照片命名為 photo-lu.jpg 放入 assets/images/ 資料夾，取消下方註解 -->
+          <img src="assets/images/photo-lu.jpg" alt="呂舒聖" />
+          <div class="avatar-placeholder">呂</div>
+        </div>
+        <div class="member-info">
+          <div class="member-name">呂舒聖</div>
+          <div class="member-role">組長 · 農企業管理系二年級</div>
+          <p class="member-bio">就讀於國立屏東科技大學農企業管理系，深入學習農業、行銷管理與經營管理等專業課程，逐漸建立起將「傳統農業」與「現代管理」相結合的跨領域思維。屏科大擁有得天獨厚的農業生態環境，不僅能吸收課堂理論，更有機會親自參與產業實際運作的個案分析。面對農業轉型與電商化的趨勢，平時積極關注智慧農業與永續發展的議題，希望將數據分析與行銷策略實際應用於未來的實務工作或實習中。具備良好的團隊合作與溝通能力，期待透過本次研究帶來創新思維與熱忱，為台灣有機農業的數位轉型貢獻一份心力。本次研究中主要負責文獻整理、問卷設計與統計分析，並統籌各組員工作進度。</p>
+        </div>
+      </div>
+
+      <!-- 成員 2 -->
+      <div class="member-card">
+        <div class="member-photo">
+          <img src="assets/images/photo-su.jpg" alt="蘇泓齊" />
+          <div class="avatar-placeholder">蘇</div>
+        </div>
+        <div class="member-info">
+          <div class="member-name">蘇泓齊</div>
+          <div class="member-role">組員 · 農企業管理系二年級</div>
+          <p class="member-bio">就讀於國立屏東科技大學農企業管理系，對農業管理和創新有著濃厚的興趣，希望未來能將所學應用於實際的農業運作中，為台灣的農業發展貢獻一份心力。在課堂上學習了農業經濟、農產品行銷、農業政策等專業知識，也透過實習和實作活動累積實務經驗。樂於學習、勇於挑戰，也喜歡與人溝通合作。本次研究中主要負責質性訪談文本分析及案例整理，深入分析阿里山拉拉吉珈琲與鹿野紅烏龍業者的轉型歷程，將田野資料轉化為具體的策略建議，對本研究的故事行銷策略矩陣建構有重要貢獻。</p>
+        </div>
+      </div>
+
+      <!-- 成員 3 -->
+      <div class="member-card">
+        <div class="member-photo">
+          <img src="assets/images/photo-chang.jpg" alt="張喬雅" />
+          <div class="avatar-placeholder">張</div>
+        </div>
+        <div class="member-info">
+          <div class="member-name">張喬雅</div>
+          <div class="member-role">組員 · 農企業管理系二年級</div>
+          <p class="member-bio">就讀於國立屏東科技大學農企業管理系，對農產品加工、品牌建立以及國際貿易深感興趣，希望未來能將高品質的台灣農產品推向國際市場。在課堂上學習了食品科學、行銷管理、國際商務等相關知識，也透過參加比賽和社團活動提升了自己的能力。樂觀開朗、做事認真負責，也喜歡接觸新事物。本次研究中主要負責網站製作、簡報設計及 Podcast 腳本撰寫，致力於將複雜的學術研究內容轉化為易於理解的視覺呈現，讓研究成果能更廣泛地被社會大眾所接受，深刻體認到視覺溝通在農業行銷上的重要性。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Research Report ─── -->
+<section id="report">
+  <div class="container reveal">
+    <p class="section-label">Research Report / 研究報告</p>
+    <h2>完整研究報告</h2>
+    <p>以下為完整研究報告全文，可直接在頁面中閱讀，或點選下方按鈕下載 PDF 版本。</p>
+    <div class="embed-block">
+      <iframe
+        class="embed-frame"
+        src="assets/docs/research-report.pdf"
+        title="完整研究報告 PDF"
+      ></iframe>
+      <div class="embed-footer">
+        <span>📄 完整研究報告 · PDF</span>
+        <a class="btn" href="assets/docs/research-report.pdf" download>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          下載報告
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Slides ─── -->
+<section id="slides">
+  <div class="container reveal">
+    <p class="section-label">Presentation / 簡報成果</p>
+    <h2>10 頁 PPT 簡報</h2>
+    <p>本研究簡報共 10 頁，涵蓋研究背景、核心問題、故事行銷策略矩陣、關鍵數據、案例分享與結論展望。</p>
+    <div class="embed-block">
+      <iframe
+        class="embed-frame"
+        src="assets/docs/presentation.pdf"
+        title="簡報 PDF"
+      ></iframe>
+      <div class="embed-footer">
+        <span>📊 研究簡報 · PDF（共 10 頁）</span>
+        <a class="btn" href="assets/docs/presentation.pdf" download>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          下載簡報
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Podcast ─── -->
+<section id="podcast">
+  <div class="container reveal">
+    <p class="section-label">Podcast / 音頻節目</p>
+    <h2>研究 Podcast</h2>
+    <p>我們將研究核心內容製作成 Podcast 節目，以輕鬆對談的方式介紹台灣有機小農如何透過故事行銷突破重圍。</p>
+    <div class="audio-wrap">
+      <h3>🎙 台灣有機小農的故事行銷之道</h3>
+      <p>本集節目深度探討故事行銷在農業品牌建立中的角色，並分享阿里山咖啡農與鹿野紅烏龍業者的真實轉型經驗。</p>
+      <!-- 將音檔命名為 podcast.mp3 放入 assets/audio/ 資料夾 -->
+      <audio controls preload="metadata">
+        <source src="assets/audio/podcast.mp3" type="audio/mpeg" />
+        <source src="assets/audio/podcast.m4a" type="audio/mp4" />
+        您的瀏覽器不支援音頻播放，請下載後收聽。
+      </audio>
+      <div class="transcript-notice">
+        <span>📝 完整逐字稿可供下載，方便搭配收聽閱讀</span>
+        <a class="btn btn-outline" href="assets/docs/podcast-transcript.pdf" download>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          下載逐字稿
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Video ─── -->
+<section id="video">
+  <div class="container reveal">
+    <p class="section-label">Video Overview / 教學影片</p>
+    <h2>Video Overview</h2>
+    <p>以下影片為本研究的 Video Overview，以視覺化方式呈現研究動機、方法與核心發現，適合快速瀏覽研究精華。</p>
+    <div class="video-wrap">
+      <!-- 將影片命名為 video-overview.mp4 放入 assets/video/ 資料夾 -->
+      <video controls preload="metadata" poster="">
+        <source src="assets/video/video-overview.mp4" type="video/mp4" />
+        您的瀏覽器不支援影片播放，請下載後觀看。
+      </video>
+    </div>
+    <p style="font-size:.85rem; color:var(--muted);">
+      影片長度：約 5–10 分鐘｜製作：研究團隊
+    </p>
+  </div>
+</section>
+
+<!-- ─── Findings ─── -->
+<section id="findings">
+  <div class="container reveal">
+    <p class="section-label">Key Findings / 研究發現</p>
+    <h2>五大核心研究發現</h2>
+
+    <div class="findings-list">
+      <div class="finding-item">
+        <div class="finding-num">1</div>
+        <div class="finding-text">
+          <strong>產品特色是消費者滿意度的最強預測因子（r = 0.810）</strong>
+          <p>量化分析顯示，「產品特色」與「遊客滿意度」呈極高度正相關。小農在社群媒體上呈現「視覺化的生產美學」（如採茶一心二葉、田間生態），比單純價格訴求更能有效提升顧客忠誠度。</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-num">2</div>
+        <div class="finding-text">
+          <strong>故事「真實性」由 10 大元素構成，創辦人線索最具影響力</strong>
+          <p>研究歸納出 10 大建構品牌真實性的元素，其中「創辦人背景」（留學背景、原本職業）與「利他動機」（為孩子健康回鄉、守護土地）最能讓消費者產生信仰與歸屬感，有效降低商業操弄感。</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-num">3</div>
+        <div class="finding-text">
+          <strong>目標客群集中於 41 歲以上女性，「品質保證」獲最高重視</strong>
+          <p>核心客群以女性（56.7%）及 41 歲以上中高齡族群（超過 2/3）為主，在五點量表中「品質保證」（4.74 分）與「在地化」（4.52 分）獲最高重視，提示行銷應強調健康養生與食安保障。</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-num">4</div>
+        <div class="finding-text">
+          <strong>六級產業化結合體驗經濟，可讓成長速度達整體經濟的 5 倍</strong>
+          <p>將農產品從物資（Commodity）提升至體驗（Experience），例如品茶音樂會、製茶導覽或沉浸式測驗，能使產品轉化為具「人文記憶」的文化象徵，創造遠高於傳統農業的附加價值。</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-num">5</div>
+        <div class="finding-text">
+          <strong>數位互動平台可縮短生產端與消費者之間的資訊距離</strong>
+          <p>資訊互動系統（如互動推播、揪團元件）能讓小農精準分析哪些故事內容引發消費行為，從而即時調整種植計畫或行銷腳本，將社群流量有效變現為穩定的熟客社群。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+  <strong>台灣有機農業市場現況與發展趨勢分析</strong><br>
+  國立屏東科技大學 農企業管理系 · 人工智慧基礎概念及商管應用<br>
+  研究團隊：呂舒聖、蘇泓齊、張喬雅 · 完成日期：2026 年 6 月
+</footer>
+
+<!-- ─── Scroll Reveal Script ─── -->
+<script>
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    }),
+    { rootMargin: '-30% 0px -60% 0px' }
+  );
+  sections.forEach(s => io.observe(s));
+</script>
+
+</body>
+</html>
